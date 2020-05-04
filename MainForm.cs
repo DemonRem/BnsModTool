@@ -160,7 +160,7 @@ namespace BnsModTool
         internal RichTextBox txtAbout;
         private GroupBox groupBox9;
         private GroupBox groupBox10;
-
+        private Button clear;
         private string lastSearchText;
 
         public MainForm()
@@ -809,18 +809,15 @@ namespace BnsModTool
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+            BnsModTool.Properties.Settings settings1 = new BnsModTool.Properties.Settings();
             this.tcApp = new System.Windows.Forms.TabControl();
             this.tabPageSettings = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnSearchModelFolder = new System.Windows.Forms.Button();
-            this.txtModelFolder = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.rbCustom = new System.Windows.Forms.RadioButton();
-            this.rbSetup = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearchOutputFolder = new System.Windows.Forms.Button();
-            this.txtOutputFolder = new System.Windows.Forms.TextBox();
             this.tabPageAnalysis = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnRefreshAnalysisFileName = new System.Windows.Forms.Button();
@@ -838,14 +835,6 @@ namespace BnsModTool
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.chkAnalysisOther = new System.Windows.Forms.CheckBox();
-            this.chkAnalysisJinM = new System.Windows.Forms.CheckBox();
-            this.chkAnalysisJinF = new System.Windows.Forms.CheckBox();
-            this.chkAnalysisGonM = new System.Windows.Forms.CheckBox();
-            this.chkAnalysisGonF = new System.Windows.Forms.CheckBox();
-            this.chkAnalysisLynM = new System.Windows.Forms.CheckBox();
-            this.chkAnalysisLynF = new System.Windows.Forms.CheckBox();
-            this.chkAnalysisKunN = new System.Windows.Forms.CheckBox();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.txtAnalysisEndName = new System.Windows.Forms.TextBox();
@@ -861,7 +850,6 @@ namespace BnsModTool
             this.btnBeginAnalysis = new System.Windows.Forms.Button();
             this.btnCancelAnalysis = new System.Windows.Forms.Button();
             this.pbAnalysis = new System.Windows.Forms.ProgressBar();
-            this.txtAnalysisInterval = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.lblAutoAnalysisArea = new System.Windows.Forms.Label();
@@ -870,14 +858,6 @@ namespace BnsModTool
             this.label5 = new System.Windows.Forms.Label();
             this.tabPageAutoReplace = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.chkReplaceGonF = new System.Windows.Forms.CheckBox();
-            this.chkReplaceJinM = new System.Windows.Forms.CheckBox();
-            this.chkReplaceJinF = new System.Windows.Forms.CheckBox();
-            this.chkReplaceGonM = new System.Windows.Forms.CheckBox();
-            this.chkReplaceLynM = new System.Windows.Forms.CheckBox();
-            this.chkReplaceLynF = new System.Windows.Forms.CheckBox();
-            this.chkReplaceKunN = new System.Windows.Forms.CheckBox();
-            this.chkReplaceOther = new System.Windows.Forms.CheckBox();
             this.btnGotoManualReplace = new System.Windows.Forms.Button();
             this.btnOpenImageDirectory = new System.Windows.Forms.Button();
             this.lblTargetImage = new System.Windows.Forms.Label();
@@ -952,6 +932,28 @@ namespace BnsModTool
             this.dlgOutputFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.dlgModelFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.dlgManualExportFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.clear = new System.Windows.Forms.Button();
+            this.txtModelFolder = new System.Windows.Forms.TextBox();
+            this.rbCustom = new System.Windows.Forms.RadioButton();
+            this.rbSetup = new System.Windows.Forms.RadioButton();
+            this.txtOutputFolder = new System.Windows.Forms.TextBox();
+            this.chkAnalysisOther = new System.Windows.Forms.CheckBox();
+            this.chkAnalysisJinM = new System.Windows.Forms.CheckBox();
+            this.chkAnalysisJinF = new System.Windows.Forms.CheckBox();
+            this.chkAnalysisGonM = new System.Windows.Forms.CheckBox();
+            this.chkAnalysisGonF = new System.Windows.Forms.CheckBox();
+            this.chkAnalysisLynM = new System.Windows.Forms.CheckBox();
+            this.chkAnalysisLynF = new System.Windows.Forms.CheckBox();
+            this.chkAnalysisKunN = new System.Windows.Forms.CheckBox();
+            this.txtAnalysisInterval = new System.Windows.Forms.TextBox();
+            this.chkReplaceGonF = new System.Windows.Forms.CheckBox();
+            this.chkReplaceJinM = new System.Windows.Forms.CheckBox();
+            this.chkReplaceJinF = new System.Windows.Forms.CheckBox();
+            this.chkReplaceGonM = new System.Windows.Forms.CheckBox();
+            this.chkReplaceLynM = new System.Windows.Forms.CheckBox();
+            this.chkReplaceLynF = new System.Windows.Forms.CheckBox();
+            this.chkReplaceKunN = new System.Windows.Forms.CheckBox();
+            this.chkReplaceOther = new System.Windows.Forms.CheckBox();
             this.tcApp.SuspendLayout();
             this.tabPageSettings.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -1031,15 +1033,6 @@ namespace BnsModTool
             this.btnSearchModelFolder.Text = "Browse";
             this.btnSearchModelFolder.UseVisualStyleBackColor = true;
             // 
-            // txtModelFolder
-            // 
-            this.txtModelFolder.DataBindings.Add(new System.Windows.Forms.Binding("Text", Settings.Default, "ModelFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtModelFolder.Location = new System.Drawing.Point(6, 89);
-            this.txtModelFolder.Name = "txtModelFolder";
-            this.txtModelFolder.Size = new System.Drawing.Size(965, 20);
-            this.txtModelFolder.TabIndex = 3;
-            this.txtModelFolder.Text = Settings.Default.ModelFolder;
-            // 
             // label1
             // 
             this.label1.Location = new System.Drawing.Point(3, 125);
@@ -1047,31 +1040,6 @@ namespace BnsModTool
             this.label1.Size = new System.Drawing.Size(968, 119);
             this.label1.TabIndex = 2;
             this.label1.Text = resources.GetString("label1.Text");
-            // 
-            // rbCustom
-            // 
-            this.rbCustom.Checked = Settings.Default.IsCustomFolder;
-            this.rbCustom.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsCustomFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rbCustom.Location = new System.Drawing.Point(6, 59);
-            this.rbCustom.Name = "rbCustom";
-            this.rbCustom.Size = new System.Drawing.Size(121, 17);
-            this.rbCustom.TabIndex = 1;
-            this.rbCustom.TabStop = true;
-            this.rbCustom.Text = "Model storage folder";
-            this.rbCustom.UseVisualStyleBackColor = true;
-            // 
-            // rbSetup
-            // 
-            this.rbSetup.AutoSize = true;
-            this.rbSetup.Checked = Settings.Default.IsSetupFolder;
-            this.rbSetup.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsSetupFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.rbSetup.Location = new System.Drawing.Point(6, 30);
-            this.rbSetup.Name = "rbSetup";
-            this.rbSetup.Size = new System.Drawing.Size(134, 17);
-            this.rbSetup.TabIndex = 0;
-            this.rbSetup.TabStop = true;
-            this.rbSetup.Text = "Game installation folder";
-            this.rbSetup.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -1102,15 +1070,6 @@ namespace BnsModTool
             this.btnSearchOutputFolder.TabIndex = 1;
             this.btnSearchOutputFolder.Text = "Browse";
             this.btnSearchOutputFolder.UseVisualStyleBackColor = true;
-            // 
-            // txtOutputFolder
-            // 
-            this.txtOutputFolder.DataBindings.Add(new System.Windows.Forms.Binding("Text", Settings.Default, "OutputFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtOutputFolder.Location = new System.Drawing.Point(6, 54);
-            this.txtOutputFolder.Name = "txtOutputFolder";
-            this.txtOutputFolder.Size = new System.Drawing.Size(965, 20);
-            this.txtOutputFolder.TabIndex = 0;
-            this.txtOutputFolder.Text = Settings.Default.OutputFolder;
             // 
             // tabPageAnalysis
             // 
@@ -1304,110 +1263,6 @@ namespace BnsModTool
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Sort by";
             // 
-            // chkAnalysisOther
-            // 
-            this.chkAnalysisOther.AutoSize = true;
-            this.chkAnalysisOther.Checked = Settings.Default.IsAnalysisOther;
-            this.chkAnalysisOther.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAnalysisOther.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsAnalysisOther", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkAnalysisOther.Location = new System.Drawing.Point(72, 88);
-            this.chkAnalysisOther.Name = "chkAnalysisOther";
-            this.chkAnalysisOther.Size = new System.Drawing.Size(48, 17);
-            this.chkAnalysisOther.TabIndex = 26;
-            this.chkAnalysisOther.Text = "Misc";
-            this.chkAnalysisOther.UseVisualStyleBackColor = true;
-            // 
-            // chkAnalysisJinM
-            // 
-            this.chkAnalysisJinM.AutoSize = true;
-            this.chkAnalysisJinM.Checked = Settings.Default.IsAnalysisJinM;
-            this.chkAnalysisJinM.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAnalysisJinM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsAnalysisJinM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkAnalysisJinM.Location = new System.Drawing.Point(6, 19);
-            this.chkAnalysisJinM.Name = "chkAnalysisJinM";
-            this.chkAnalysisJinM.Size = new System.Drawing.Size(48, 17);
-            this.chkAnalysisJinM.TabIndex = 4;
-            this.chkAnalysisJinM.Text = "JinM";
-            this.chkAnalysisJinM.UseVisualStyleBackColor = true;
-            // 
-            // chkAnalysisJinF
-            // 
-            this.chkAnalysisJinF.AutoSize = true;
-            this.chkAnalysisJinF.Checked = Settings.Default.IsAnalysisJinF;
-            this.chkAnalysisJinF.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAnalysisJinF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsAnalysisJinF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkAnalysisJinF.Location = new System.Drawing.Point(72, 19);
-            this.chkAnalysisJinF.Name = "chkAnalysisJinF";
-            this.chkAnalysisJinF.Size = new System.Drawing.Size(45, 17);
-            this.chkAnalysisJinF.TabIndex = 5;
-            this.chkAnalysisJinF.Text = "JinF";
-            this.chkAnalysisJinF.UseVisualStyleBackColor = true;
-            // 
-            // chkAnalysisGonM
-            // 
-            this.chkAnalysisGonM.AutoSize = true;
-            this.chkAnalysisGonM.Checked = Settings.Default.IsAnalysisGonM;
-            this.chkAnalysisGonM.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAnalysisGonM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsAnalysisGonM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkAnalysisGonM.Location = new System.Drawing.Point(6, 42);
-            this.chkAnalysisGonM.Name = "chkAnalysisGonM";
-            this.chkAnalysisGonM.Size = new System.Drawing.Size(55, 17);
-            this.chkAnalysisGonM.TabIndex = 6;
-            this.chkAnalysisGonM.Text = "GonM";
-            this.chkAnalysisGonM.UseVisualStyleBackColor = true;
-            // 
-            // chkAnalysisGonF
-            // 
-            this.chkAnalysisGonF.AutoSize = true;
-            this.chkAnalysisGonF.Checked = Settings.Default.IsAnalysisGonF;
-            this.chkAnalysisGonF.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAnalysisGonF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsAnalysisGonF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkAnalysisGonF.Location = new System.Drawing.Point(72, 42);
-            this.chkAnalysisGonF.Name = "chkAnalysisGonF";
-            this.chkAnalysisGonF.Size = new System.Drawing.Size(52, 17);
-            this.chkAnalysisGonF.TabIndex = 7;
-            this.chkAnalysisGonF.Text = "GonF";
-            this.chkAnalysisGonF.UseVisualStyleBackColor = true;
-            // 
-            // chkAnalysisLynM
-            // 
-            this.chkAnalysisLynM.AutoSize = true;
-            this.chkAnalysisLynM.Checked = Settings.Default.IsAnalysisLynM;
-            this.chkAnalysisLynM.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAnalysisLynM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsAnalysisLynM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkAnalysisLynM.Location = new System.Drawing.Point(6, 65);
-            this.chkAnalysisLynM.Name = "chkAnalysisLynM";
-            this.chkAnalysisLynM.Size = new System.Drawing.Size(52, 17);
-            this.chkAnalysisLynM.TabIndex = 8;
-            this.chkAnalysisLynM.Text = "LynM";
-            this.chkAnalysisLynM.UseVisualStyleBackColor = true;
-            // 
-            // chkAnalysisLynF
-            // 
-            this.chkAnalysisLynF.AutoSize = true;
-            this.chkAnalysisLynF.Checked = Settings.Default.IsAnalysisLynF;
-            this.chkAnalysisLynF.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAnalysisLynF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsAnalysisLynF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkAnalysisLynF.Location = new System.Drawing.Point(72, 65);
-            this.chkAnalysisLynF.Name = "chkAnalysisLynF";
-            this.chkAnalysisLynF.Size = new System.Drawing.Size(49, 17);
-            this.chkAnalysisLynF.TabIndex = 9;
-            this.chkAnalysisLynF.Text = "LynF";
-            this.chkAnalysisLynF.UseVisualStyleBackColor = true;
-            // 
-            // chkAnalysisKunN
-            // 
-            this.chkAnalysisKunN.AutoSize = true;
-            this.chkAnalysisKunN.Checked = Settings.Default.IsAnalysisKunN;
-            this.chkAnalysisKunN.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkAnalysisKunN.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsAnalysisKunN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkAnalysisKunN.Location = new System.Drawing.Point(6, 89);
-            this.chkAnalysisKunN.Name = "chkAnalysisKunN";
-            this.chkAnalysisKunN.Size = new System.Drawing.Size(45, 17);
-            this.chkAnalysisKunN.TabIndex = 10;
-            this.chkAnalysisKunN.Text = "Yun";
-            this.chkAnalysisKunN.UseVisualStyleBackColor = true;
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
@@ -1535,16 +1390,6 @@ namespace BnsModTool
             this.pbAnalysis.Size = new System.Drawing.Size(635, 25);
             this.pbAnalysis.TabIndex = 11;
             // 
-            // txtAnalysisInterval
-            // 
-            this.txtAnalysisInterval.DataBindings.Add(new System.Windows.Forms.Binding("Text", Settings.Default, "AnalysisInterval", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtAnalysisInterval.Location = new System.Drawing.Point(81, 25);
-            this.txtAnalysisInterval.Name = "txtAnalysisInterval";
-            this.txtAnalysisInterval.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtAnalysisInterval.Size = new System.Drawing.Size(56, 20);
-            this.txtAnalysisInterval.TabIndex = 2;
-            this.txtAnalysisInterval.Text = Settings.Default.AnalysisInterval;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -1657,110 +1502,6 @@ namespace BnsModTool
             this.groupBox9.TabIndex = 34;
             this.groupBox9.TabStop = false;
             this.groupBox9.Text = "Sort by";
-            // 
-            // chkReplaceGonF
-            // 
-            this.chkReplaceGonF.AutoSize = true;
-            this.chkReplaceGonF.Checked = Settings.Default.IsReplaceGonF;
-            this.chkReplaceGonF.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReplaceGonF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsReplaceGonF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkReplaceGonF.Location = new System.Drawing.Point(92, 41);
-            this.chkReplaceGonF.Name = "chkReplaceGonF";
-            this.chkReplaceGonF.Size = new System.Drawing.Size(52, 17);
-            this.chkReplaceGonF.TabIndex = 15;
-            this.chkReplaceGonF.Text = "GonF";
-            this.chkReplaceGonF.UseVisualStyleBackColor = true;
-            // 
-            // chkReplaceJinM
-            // 
-            this.chkReplaceJinM.AutoSize = true;
-            this.chkReplaceJinM.Checked = Settings.Default.IsReplaceJinM;
-            this.chkReplaceJinM.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReplaceJinM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsReplaceJinM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkReplaceJinM.Location = new System.Drawing.Point(26, 17);
-            this.chkReplaceJinM.Name = "chkReplaceJinM";
-            this.chkReplaceJinM.Size = new System.Drawing.Size(48, 17);
-            this.chkReplaceJinM.TabIndex = 12;
-            this.chkReplaceJinM.Text = "JinM";
-            this.chkReplaceJinM.UseVisualStyleBackColor = true;
-            // 
-            // chkReplaceJinF
-            // 
-            this.chkReplaceJinF.AutoSize = true;
-            this.chkReplaceJinF.Checked = Settings.Default.IsReplaceJinF;
-            this.chkReplaceJinF.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReplaceJinF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsReplaceJinF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkReplaceJinF.Location = new System.Drawing.Point(92, 17);
-            this.chkReplaceJinF.Name = "chkReplaceJinF";
-            this.chkReplaceJinF.Size = new System.Drawing.Size(45, 17);
-            this.chkReplaceJinF.TabIndex = 13;
-            this.chkReplaceJinF.Text = "JinF";
-            this.chkReplaceJinF.UseVisualStyleBackColor = true;
-            // 
-            // chkReplaceGonM
-            // 
-            this.chkReplaceGonM.AutoSize = true;
-            this.chkReplaceGonM.Checked = Settings.Default.IsReplaceGonM;
-            this.chkReplaceGonM.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReplaceGonM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsReplaceGonM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkReplaceGonM.Location = new System.Drawing.Point(26, 41);
-            this.chkReplaceGonM.Name = "chkReplaceGonM";
-            this.chkReplaceGonM.Size = new System.Drawing.Size(55, 17);
-            this.chkReplaceGonM.TabIndex = 14;
-            this.chkReplaceGonM.Text = "GonM";
-            this.chkReplaceGonM.UseVisualStyleBackColor = true;
-            // 
-            // chkReplaceLynM
-            // 
-            this.chkReplaceLynM.AutoSize = true;
-            this.chkReplaceLynM.Checked = Settings.Default.IsReplaceLynM;
-            this.chkReplaceLynM.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReplaceLynM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsReplaceLynM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkReplaceLynM.Location = new System.Drawing.Point(26, 64);
-            this.chkReplaceLynM.Name = "chkReplaceLynM";
-            this.chkReplaceLynM.Size = new System.Drawing.Size(52, 17);
-            this.chkReplaceLynM.TabIndex = 16;
-            this.chkReplaceLynM.Text = "LynM";
-            this.chkReplaceLynM.UseVisualStyleBackColor = true;
-            // 
-            // chkReplaceLynF
-            // 
-            this.chkReplaceLynF.AutoSize = true;
-            this.chkReplaceLynF.Checked = Settings.Default.IsReplaceLynF;
-            this.chkReplaceLynF.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReplaceLynF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsReplaceLynF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkReplaceLynF.Location = new System.Drawing.Point(92, 64);
-            this.chkReplaceLynF.Name = "chkReplaceLynF";
-            this.chkReplaceLynF.Size = new System.Drawing.Size(49, 17);
-            this.chkReplaceLynF.TabIndex = 17;
-            this.chkReplaceLynF.Text = "LynF";
-            this.chkReplaceLynF.UseVisualStyleBackColor = true;
-            // 
-            // chkReplaceKunN
-            // 
-            this.chkReplaceKunN.AutoSize = true;
-            this.chkReplaceKunN.Checked = Settings.Default.IsReplaceKunN;
-            this.chkReplaceKunN.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReplaceKunN.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsReplaceKunN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkReplaceKunN.Location = new System.Drawing.Point(26, 88);
-            this.chkReplaceKunN.Name = "chkReplaceKunN";
-            this.chkReplaceKunN.Size = new System.Drawing.Size(45, 17);
-            this.chkReplaceKunN.TabIndex = 18;
-            this.chkReplaceKunN.Text = "Yun";
-            this.chkReplaceKunN.UseVisualStyleBackColor = true;
-            // 
-            // chkReplaceOther
-            // 
-            this.chkReplaceOther.AutoSize = true;
-            this.chkReplaceOther.Checked = Settings.Default.IsReplaceOther;
-            this.chkReplaceOther.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkReplaceOther.DataBindings.Add(new System.Windows.Forms.Binding("Checked", Settings.Default, "IsReplaceOther", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.chkReplaceOther.Location = new System.Drawing.Point(92, 89);
-            this.chkReplaceOther.Name = "chkReplaceOther";
-            this.chkReplaceOther.Size = new System.Drawing.Size(48, 17);
-            this.chkReplaceOther.TabIndex = 23;
-            this.chkReplaceOther.Text = "Misc";
-            this.chkReplaceOther.UseVisualStyleBackColor = true;
             // 
             // btnGotoManualReplace
             // 
@@ -2013,6 +1754,7 @@ namespace BnsModTool
             // 
             // tabPageManualReplace
             // 
+            this.tabPageManualReplace.Controls.Add(this.clear);
             this.tabPageManualReplace.Controls.Add(this.txtManualTargetObjectID);
             this.tabPageManualReplace.Controls.Add(this.label43);
             this.tabPageManualReplace.Controls.Add(this.txtManualSourceObjectID);
@@ -2428,6 +2170,299 @@ namespace BnsModTool
             this.txtAbout.TabIndex = 1;
             this.txtAbout.Text = "";
             // 
+            // clear
+            // 
+            this.clear.Location = new System.Drawing.Point(474, 361);
+            this.clear.Name = "clear";
+            this.clear.Size = new System.Drawing.Size(98, 25);
+            this.clear.TabIndex = 35;
+            this.clear.Text = "Clear";
+            this.clear.UseVisualStyleBackColor = true;
+            this.clear.Click += new System.EventHandler(this.clear_Click);
+            // 
+            // txtModelFolder
+            // 
+            settings1.AnalysisInterval = "1000";
+            settings1.IsAnalysisGonF = true;
+            settings1.IsAnalysisGonM = true;
+            settings1.IsAnalysisJinF = true;
+            settings1.IsAnalysisJinM = true;
+            settings1.IsAnalysisKunN = true;
+            settings1.IsAnalysisLynF = true;
+            settings1.IsAnalysisLynM = true;
+            settings1.IsAnalysisOther = true;
+            settings1.IsCustomFolder = false;
+            settings1.IsReplaceGonF = true;
+            settings1.IsReplaceGonM = true;
+            settings1.IsReplaceJinF = true;
+            settings1.IsReplaceJinM = true;
+            settings1.IsReplaceKunN = true;
+            settings1.IsReplaceLynF = true;
+            settings1.IsReplaceLynM = true;
+            settings1.IsReplaceOther = true;
+            settings1.IsSetupFolder = true;
+            settings1.ModelFolder = "";
+            settings1.OutputFolder = "";
+            settings1.SettingsKey = "";
+            this.txtModelFolder.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "ModelFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtModelFolder.Location = new System.Drawing.Point(6, 89);
+            this.txtModelFolder.Name = "txtModelFolder";
+            this.txtModelFolder.Size = new System.Drawing.Size(965, 20);
+            this.txtModelFolder.TabIndex = 3;
+            this.txtModelFolder.Text = settings1.ModelFolder;
+            // 
+            // rbCustom
+            // 
+            this.rbCustom.Checked = settings1.IsCustomFolder;
+            this.rbCustom.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsCustomFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rbCustom.Location = new System.Drawing.Point(6, 59);
+            this.rbCustom.Name = "rbCustom";
+            this.rbCustom.Size = new System.Drawing.Size(121, 17);
+            this.rbCustom.TabIndex = 1;
+            this.rbCustom.TabStop = true;
+            this.rbCustom.Text = "Model storage folder";
+            this.rbCustom.UseVisualStyleBackColor = true;
+            // 
+            // rbSetup
+            // 
+            this.rbSetup.AutoSize = true;
+            this.rbSetup.Checked = settings1.IsSetupFolder;
+            this.rbSetup.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsSetupFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.rbSetup.Location = new System.Drawing.Point(6, 30);
+            this.rbSetup.Name = "rbSetup";
+            this.rbSetup.Size = new System.Drawing.Size(134, 17);
+            this.rbSetup.TabIndex = 0;
+            this.rbSetup.TabStop = true;
+            this.rbSetup.Text = "Game installation folder";
+            this.rbSetup.UseVisualStyleBackColor = true;
+            // 
+            // txtOutputFolder
+            // 
+            this.txtOutputFolder.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "OutputFolder", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtOutputFolder.Location = new System.Drawing.Point(6, 54);
+            this.txtOutputFolder.Name = "txtOutputFolder";
+            this.txtOutputFolder.Size = new System.Drawing.Size(965, 20);
+            this.txtOutputFolder.TabIndex = 0;
+            this.txtOutputFolder.Text = settings1.OutputFolder;
+            // 
+            // chkAnalysisOther
+            // 
+            this.chkAnalysisOther.AutoSize = true;
+            this.chkAnalysisOther.Checked = settings1.IsAnalysisOther;
+            this.chkAnalysisOther.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAnalysisOther.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsAnalysisOther", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkAnalysisOther.Location = new System.Drawing.Point(72, 88);
+            this.chkAnalysisOther.Name = "chkAnalysisOther";
+            this.chkAnalysisOther.Size = new System.Drawing.Size(48, 17);
+            this.chkAnalysisOther.TabIndex = 26;
+            this.chkAnalysisOther.Text = "Misc";
+            this.chkAnalysisOther.UseVisualStyleBackColor = true;
+            // 
+            // chkAnalysisJinM
+            // 
+            this.chkAnalysisJinM.AutoSize = true;
+            this.chkAnalysisJinM.Checked = settings1.IsAnalysisJinM;
+            this.chkAnalysisJinM.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAnalysisJinM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsAnalysisJinM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkAnalysisJinM.Location = new System.Drawing.Point(6, 19);
+            this.chkAnalysisJinM.Name = "chkAnalysisJinM";
+            this.chkAnalysisJinM.Size = new System.Drawing.Size(48, 17);
+            this.chkAnalysisJinM.TabIndex = 4;
+            this.chkAnalysisJinM.Text = "JinM";
+            this.chkAnalysisJinM.UseVisualStyleBackColor = true;
+            // 
+            // chkAnalysisJinF
+            // 
+            this.chkAnalysisJinF.AutoSize = true;
+            this.chkAnalysisJinF.Checked = settings1.IsAnalysisJinF;
+            this.chkAnalysisJinF.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAnalysisJinF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsAnalysisJinF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkAnalysisJinF.Location = new System.Drawing.Point(72, 19);
+            this.chkAnalysisJinF.Name = "chkAnalysisJinF";
+            this.chkAnalysisJinF.Size = new System.Drawing.Size(45, 17);
+            this.chkAnalysisJinF.TabIndex = 5;
+            this.chkAnalysisJinF.Text = "JinF";
+            this.chkAnalysisJinF.UseVisualStyleBackColor = true;
+            // 
+            // chkAnalysisGonM
+            // 
+            this.chkAnalysisGonM.AutoSize = true;
+            this.chkAnalysisGonM.Checked = settings1.IsAnalysisGonM;
+            this.chkAnalysisGonM.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAnalysisGonM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsAnalysisGonM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkAnalysisGonM.Location = new System.Drawing.Point(6, 42);
+            this.chkAnalysisGonM.Name = "chkAnalysisGonM";
+            this.chkAnalysisGonM.Size = new System.Drawing.Size(55, 17);
+            this.chkAnalysisGonM.TabIndex = 6;
+            this.chkAnalysisGonM.Text = "GonM";
+            this.chkAnalysisGonM.UseVisualStyleBackColor = true;
+            // 
+            // chkAnalysisGonF
+            // 
+            this.chkAnalysisGonF.AutoSize = true;
+            this.chkAnalysisGonF.Checked = settings1.IsAnalysisGonF;
+            this.chkAnalysisGonF.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAnalysisGonF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsAnalysisGonF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkAnalysisGonF.Location = new System.Drawing.Point(72, 42);
+            this.chkAnalysisGonF.Name = "chkAnalysisGonF";
+            this.chkAnalysisGonF.Size = new System.Drawing.Size(52, 17);
+            this.chkAnalysisGonF.TabIndex = 7;
+            this.chkAnalysisGonF.Text = "GonF";
+            this.chkAnalysisGonF.UseVisualStyleBackColor = true;
+            // 
+            // chkAnalysisLynM
+            // 
+            this.chkAnalysisLynM.AutoSize = true;
+            this.chkAnalysisLynM.Checked = settings1.IsAnalysisLynM;
+            this.chkAnalysisLynM.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAnalysisLynM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsAnalysisLynM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkAnalysisLynM.Location = new System.Drawing.Point(6, 65);
+            this.chkAnalysisLynM.Name = "chkAnalysisLynM";
+            this.chkAnalysisLynM.Size = new System.Drawing.Size(52, 17);
+            this.chkAnalysisLynM.TabIndex = 8;
+            this.chkAnalysisLynM.Text = "LynM";
+            this.chkAnalysisLynM.UseVisualStyleBackColor = true;
+            // 
+            // chkAnalysisLynF
+            // 
+            this.chkAnalysisLynF.AutoSize = true;
+            this.chkAnalysisLynF.Checked = settings1.IsAnalysisLynF;
+            this.chkAnalysisLynF.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAnalysisLynF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsAnalysisLynF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkAnalysisLynF.Location = new System.Drawing.Point(72, 65);
+            this.chkAnalysisLynF.Name = "chkAnalysisLynF";
+            this.chkAnalysisLynF.Size = new System.Drawing.Size(49, 17);
+            this.chkAnalysisLynF.TabIndex = 9;
+            this.chkAnalysisLynF.Text = "LynF";
+            this.chkAnalysisLynF.UseVisualStyleBackColor = true;
+            // 
+            // chkAnalysisKunN
+            // 
+            this.chkAnalysisKunN.AutoSize = true;
+            this.chkAnalysisKunN.Checked = settings1.IsAnalysisKunN;
+            this.chkAnalysisKunN.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkAnalysisKunN.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsAnalysisKunN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkAnalysisKunN.Location = new System.Drawing.Point(6, 89);
+            this.chkAnalysisKunN.Name = "chkAnalysisKunN";
+            this.chkAnalysisKunN.Size = new System.Drawing.Size(45, 17);
+            this.chkAnalysisKunN.TabIndex = 10;
+            this.chkAnalysisKunN.Text = "Yun";
+            this.chkAnalysisKunN.UseVisualStyleBackColor = true;
+            // 
+            // txtAnalysisInterval
+            // 
+            this.txtAnalysisInterval.DataBindings.Add(new System.Windows.Forms.Binding("Text", settings1, "AnalysisInterval", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtAnalysisInterval.Location = new System.Drawing.Point(81, 25);
+            this.txtAnalysisInterval.Name = "txtAnalysisInterval";
+            this.txtAnalysisInterval.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtAnalysisInterval.Size = new System.Drawing.Size(56, 20);
+            this.txtAnalysisInterval.TabIndex = 2;
+            this.txtAnalysisInterval.Text = settings1.AnalysisInterval;
+            // 
+            // chkReplaceGonF
+            // 
+            this.chkReplaceGonF.AutoSize = true;
+            this.chkReplaceGonF.Checked = settings1.IsReplaceGonF;
+            this.chkReplaceGonF.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkReplaceGonF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsReplaceGonF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkReplaceGonF.Location = new System.Drawing.Point(92, 41);
+            this.chkReplaceGonF.Name = "chkReplaceGonF";
+            this.chkReplaceGonF.Size = new System.Drawing.Size(52, 17);
+            this.chkReplaceGonF.TabIndex = 15;
+            this.chkReplaceGonF.Text = "GonF";
+            this.chkReplaceGonF.UseVisualStyleBackColor = true;
+            // 
+            // chkReplaceJinM
+            // 
+            this.chkReplaceJinM.AutoSize = true;
+            this.chkReplaceJinM.Checked = settings1.IsReplaceJinM;
+            this.chkReplaceJinM.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkReplaceJinM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsReplaceJinM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkReplaceJinM.Location = new System.Drawing.Point(26, 17);
+            this.chkReplaceJinM.Name = "chkReplaceJinM";
+            this.chkReplaceJinM.Size = new System.Drawing.Size(48, 17);
+            this.chkReplaceJinM.TabIndex = 12;
+            this.chkReplaceJinM.Text = "JinM";
+            this.chkReplaceJinM.UseVisualStyleBackColor = true;
+            // 
+            // chkReplaceJinF
+            // 
+            this.chkReplaceJinF.AutoSize = true;
+            this.chkReplaceJinF.Checked = settings1.IsReplaceJinF;
+            this.chkReplaceJinF.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkReplaceJinF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsReplaceJinF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkReplaceJinF.Location = new System.Drawing.Point(92, 17);
+            this.chkReplaceJinF.Name = "chkReplaceJinF";
+            this.chkReplaceJinF.Size = new System.Drawing.Size(45, 17);
+            this.chkReplaceJinF.TabIndex = 13;
+            this.chkReplaceJinF.Text = "JinF";
+            this.chkReplaceJinF.UseVisualStyleBackColor = true;
+            // 
+            // chkReplaceGonM
+            // 
+            this.chkReplaceGonM.AutoSize = true;
+            this.chkReplaceGonM.Checked = settings1.IsReplaceGonM;
+            this.chkReplaceGonM.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkReplaceGonM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsReplaceGonM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkReplaceGonM.Location = new System.Drawing.Point(26, 41);
+            this.chkReplaceGonM.Name = "chkReplaceGonM";
+            this.chkReplaceGonM.Size = new System.Drawing.Size(55, 17);
+            this.chkReplaceGonM.TabIndex = 14;
+            this.chkReplaceGonM.Text = "GonM";
+            this.chkReplaceGonM.UseVisualStyleBackColor = true;
+            // 
+            // chkReplaceLynM
+            // 
+            this.chkReplaceLynM.AutoSize = true;
+            this.chkReplaceLynM.Checked = settings1.IsReplaceLynM;
+            this.chkReplaceLynM.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkReplaceLynM.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsReplaceLynM", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkReplaceLynM.Location = new System.Drawing.Point(26, 64);
+            this.chkReplaceLynM.Name = "chkReplaceLynM";
+            this.chkReplaceLynM.Size = new System.Drawing.Size(52, 17);
+            this.chkReplaceLynM.TabIndex = 16;
+            this.chkReplaceLynM.Text = "LynM";
+            this.chkReplaceLynM.UseVisualStyleBackColor = true;
+            // 
+            // chkReplaceLynF
+            // 
+            this.chkReplaceLynF.AutoSize = true;
+            this.chkReplaceLynF.Checked = settings1.IsReplaceLynF;
+            this.chkReplaceLynF.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkReplaceLynF.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsReplaceLynF", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkReplaceLynF.Location = new System.Drawing.Point(92, 64);
+            this.chkReplaceLynF.Name = "chkReplaceLynF";
+            this.chkReplaceLynF.Size = new System.Drawing.Size(49, 17);
+            this.chkReplaceLynF.TabIndex = 17;
+            this.chkReplaceLynF.Text = "LynF";
+            this.chkReplaceLynF.UseVisualStyleBackColor = true;
+            // 
+            // chkReplaceKunN
+            // 
+            this.chkReplaceKunN.AutoSize = true;
+            this.chkReplaceKunN.Checked = settings1.IsReplaceKunN;
+            this.chkReplaceKunN.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkReplaceKunN.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsReplaceKunN", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkReplaceKunN.Location = new System.Drawing.Point(26, 88);
+            this.chkReplaceKunN.Name = "chkReplaceKunN";
+            this.chkReplaceKunN.Size = new System.Drawing.Size(45, 17);
+            this.chkReplaceKunN.TabIndex = 18;
+            this.chkReplaceKunN.Text = "Yun";
+            this.chkReplaceKunN.UseVisualStyleBackColor = true;
+            // 
+            // chkReplaceOther
+            // 
+            this.chkReplaceOther.AutoSize = true;
+            this.chkReplaceOther.Checked = settings1.IsReplaceOther;
+            this.chkReplaceOther.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkReplaceOther.DataBindings.Add(new System.Windows.Forms.Binding("Checked", settings1, "IsReplaceOther", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.chkReplaceOther.Location = new System.Drawing.Point(92, 89);
+            this.chkReplaceOther.Name = "chkReplaceOther";
+            this.chkReplaceOther.Size = new System.Drawing.Size(48, 17);
+            this.chkReplaceOther.TabIndex = 23;
+            this.chkReplaceOther.Text = "Misc";
+            this.chkReplaceOther.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2655,5 +2690,18 @@ namespace BnsModTool
         }
 
         internal event EventHandler<OperationEventArgs> DoOperation;
+
+        private void clear_Click(object sender, EventArgs e)
+        {
+            txtManualExportFolderName.Text = "";
+            txtManualSourceFileNameX.Text = "";
+            txtManualSourceFileNameY.Text = "";
+            txtManualSourceFileNameZ.Text = "";
+            txtManualTargetFileNameX.Text = "";
+            txtManualTargetFileNameY.Text = "";
+            txtManualTargetFileNameZ.Text = "";
+                txtManualSourceObjectID.Text = "";
+                txtManualTargetObjectID.Text = "";
+        }
     }
 }

@@ -1,0 +1,10 @@
+D:\BnsModTool\bin\Release\BnS Model Tool.exe.config
+D:\BnsModTool\bin\Release\BnS Model Tool.exe
+D:\BnsModTool\bin\Release\BnS Model Tool.pdb
+D:\BnsModTool\obj\Release\Tool.csprojAssemblyReference.cache
+D:\BnsModTool\obj\Release\BnsModTool.RenameForm.resources
+D:\BnsModTool\obj\Release\BnsModTool.MainForm.resources
+D:\BnsModTool\obj\Release\BnsModTool.Properties.Resources.resources
+D:\BnsModTool\obj\Release\Tool.csproj.GenerateResource.cache
+D:\BnsModTool\obj\Release\BnS Model Tool.exe
+D:\BnsModTool\obj\Release\BnS Model Tool.pdb
